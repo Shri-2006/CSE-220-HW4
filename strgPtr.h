@@ -1,3 +1,4 @@
+//Shriyans Singh 114807762
 #ifndef STRGPTR_H
 #define STRGPTR_H
 #include <stddef.h>
