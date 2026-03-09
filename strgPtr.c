@@ -5,7 +5,15 @@
 int strgLen(const char *s) {
     (void)s;
     /* TODO */
-    return 0;
+    int length =0;
+    if (*s==NULL){
+        length=-1;
+    }
+    else{
+        length= sizeof(*s)/sizeof(*s[0]);
+        length=length-1;
+    }
+    return length;
 }
 
 void strgCopy(const char *source, char *destination, size_t size) {
