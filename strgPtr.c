@@ -8,8 +8,10 @@ int strgLen(const char *s) {
     const char *temp = s;
     int length =0;
 
-    
-    while(*temp != '\0'){
+    if(*temp == NULL){
+        return 0;
+    }
+    while(*temp != '\0'|| *temp !=NULL){
         length++;
         temp++;
     }
