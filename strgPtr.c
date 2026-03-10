@@ -5,14 +5,16 @@
 int strgLen(const char *s) {
     (void)s;
     /* TODO */
+    const char *temp = s;
     int length =0;
-    if (*s==NULL){
-        length=-1;
+
+    
+    while(*temp != '\0'){
+        length++;
+        temp++;
     }
-    else{
-        length= sizeof(*s)/sizeof(*s[0]);
-        length=length-1;
-    }
+    length=length-1;
+    
     return length;
 }
 
