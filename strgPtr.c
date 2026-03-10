@@ -27,6 +27,26 @@ void strgCopy(const char *source, char *destination, size_t size) {
     (void)destination;
     (void)size;
     /* TODO */
+    //if size==0 do nothing
+    if(size == 0){
+        size=size;
+    }
+    //if size==1 store null char
+    else if (size ==1){
+        *destination='\0';
+    }
+    else{
+        do{
+            *destination=*source;
+            destination++;
+            source++;
+            size=size-1;
+        }while(size>1&&*source!= '\0');
+        *destination='\0';
+    }
+    return *destination;
+
+
 }
 
 void strgChangeCase(char *s) {
