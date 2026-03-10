@@ -27,8 +27,8 @@ void strgCopy(const char *source, char *destination, size_t size) {
     (void)destination;
     (void)size;
     /* TODO */
-    //if size==0 do nothing
-    if(size == 0){
+    //if size==0 or source or destination is null do nothing
+    if(size == 0 || source==NULL||destination==NULL){
         size=size;
     }
     //if size==1 store null char
@@ -36,15 +36,17 @@ void strgCopy(const char *source, char *destination, size_t size) {
         *destination='\0';
     }
     else{
-        do{
+        //while there is more than1 index left or source hasn't hit null char copy characters in source to destination
+       while(size>1&&*source!= '\0'){
             *destination=*source;
             destination++;
             source++;
             size=size-1;
-        }while(size>1&&*source!= '\0');
+        }
+        //last index must be null
         *destination='\0';
     }
-    return *destination;
+    
 
 
 }
