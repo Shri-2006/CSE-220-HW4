@@ -11,7 +11,7 @@ int strgLen(const char *s) {
     if(s == NULL){
         return (length=-1);
     }
-    while(*temp != '\0'|| *temp !=NULL){
+    while(*temp != '\0'){
         length++;
         temp++;
     }
