@@ -7,16 +7,18 @@ int strgLen(const char *s) {
     /* TODO */
     const char *temp = s;
     int length =0;
-
+    //If null, return -1 
     if(s == NULL){
         length=-1;
     }
     else{
+        //count string length until null char reached
         while(*temp != '\0'){
             length++;
             temp++;
         }
     }
+    //return length
     return length;
 }
 
