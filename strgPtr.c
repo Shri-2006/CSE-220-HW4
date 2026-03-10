@@ -13,7 +13,6 @@ int strgLen(const char *s) {
         length++;
         temp++;
     }
-    length=length-1;
     
     return length;
 }
