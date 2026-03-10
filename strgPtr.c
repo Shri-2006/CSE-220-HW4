@@ -9,7 +9,7 @@ int strgLen(const char *s) {
     int length =0;
 
     if(*temp == NULL){
-        return 0;
+        return (length=-1);
     }
     while(*temp != '\0'|| *temp !=NULL){
         length++;
