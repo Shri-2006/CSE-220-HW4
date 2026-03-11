@@ -122,28 +122,43 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
     if(s1==NULL||s2 ==NULL ||d==NULL){
         return;
     }
+    int x=0;
     for(int i=0;i<size-1;i++){
         //if s1 is null and s2 is null add null char to d, else if s2 is not null add s2 to d
         if(s1[i]== '\0'){
 
             if(s2[i]=='\0'){
-                d[i]='\0';
+                d[x]='\0';
+                x++;
             }
             else{
-                d[i]= s2[i];
+                d[x]= s2[i];
+                x++;
             }
         }
         //if s2 is null but s1 isn't, add s1 to d.
         else if(s2[i]=='\0'){
-            d[i] =s1[i];
+            d[x] =s1[i];
+            x++;
         }
-        
-    }
+        else{
+            if(i%2==0){
+                d[x]=s1[i];
+                x++;
+            }
+            else{
+                d[x]=s2[i];
+                x++;
+            }
+            }
+        }
+
+    
     //last index MUST Be \0 to ensure string terminated. replace last bit with null.
     d[size-1]='\0';
 
+    }
 
-}
 
 void strgReverseLetters(char *s) {
     (void)s;
