@@ -123,6 +123,7 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
         return;
     }
     for(int i=0;i<size-1;i++){
+        //if s1 is null and s2 is null add null char to d, else if s2 is not null add s2 to d
         if(s1[i]== '\0'){
 
             if(s2[i]=='\0'){
@@ -132,7 +133,14 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
                 d[i]= s2[i];
             }
         }
+        //if s2 is null but s1 isn't, add s1 to d.
+        else if(s2[i]=='\0'){
+            d[i] =s1[i];
+        }
+        
     }
+    //last index MUST Be \0 to ensure string terminated. replace last bit with null.
+    d[size-1]='\0';
 
 
 }
