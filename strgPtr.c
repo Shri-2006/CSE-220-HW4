@@ -55,18 +55,28 @@ void strgChangeCase(char *s) {
     (void)s;
     /* TODO */
     int i=0;
+    //test case includes that when NULL, return from function
+    if(s==NULL){
+        return;
+    }
+    //while string is not ended, keep going
     while (s[i]!='\0'){
         int ifadjcaentDigit=0;
+        //if any index not at 0, if previous char are digits, don't change Case
         if (i>0&& (s[i-1]>='0'&&s[i-1]<='9')){
             ifadjcaentDigit=1;
         }
+        //if not last index, if after char are digtis, don't change case
         if(s[i+1]!='\0'&&(s[i+1]>='0'&&s[i+1]<='9')){
             ifadjcaentDigit=1;
         }
+        //if no adjacent digits swap case.
         if(ifadjcaentDigit==0){
+            //lowercase to uppercase
             if(s[i]>='a' && s[i]<='z'){
                 s[i] = s[i]-32;
             }
+            //uppercase to lowercase
             else if (s[i]>='A' &&s[i]<='Z'){
                 s[i] =s[i]+ 32;
         }
