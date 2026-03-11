@@ -118,6 +118,51 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
     (void)size;
     /* TODO */
 
+     //if s1,s2, or d is null return
+    if(s1==NULL||s2 ==NULL ||d==NULL){
+        return;
+    }
+
+    int x=0,s1_indexer=0,s2_indexer=0;
+    for(int i=0;i<size-1;i++){
+        //if both strings are empty, end loop.
+        if(s1[s1_indexer]=='\0' &&s2[s2_indexer]=='\0'){
+            break;
+        }else{
+            if(i%2==0){
+                if(s1[s1_indexer]=='\0'){
+                    d[x]=s2[s2_indexer];
+                    s2_indexer++;
+                    x++;
+                }else{
+                    d[x]= s1[s1_indexer];
+                    s1_indexer++;
+                    x++;
+                }
+            }
+            else{
+                if(s2[s2_indexer]=='\0'){
+                    d[x]=s1[s1_indexer];
+                    s1_indexer++;
+                    x++;
+                }else{
+                    d[x]= s2[s2_indexer];
+                    s2_indexer++;
+                    x++;
+                }
+            }
+        }
+    }d[x]= '\0';
+
+
+
+
+
+
+
+
+
+    /*
     //if s1,s2, or d is null return
     if(s1==NULL||s2 ==NULL ||d==NULL){
         return;
@@ -155,7 +200,10 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
 
     
     //last index MUST Be \0 to ensure string terminated. replace last bit with null.
-    d[size-1]='\0';
+    d[x]='\0';
+*/
+
+
 
     }
 
