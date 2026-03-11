@@ -169,4 +169,28 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
 void strgReverseLetters(char *s) {
     (void)s;
     /* TODO */
+    //return null
+    if(s==NULL){
+        return;
+    }
+    
+    int i=0,x=0;
+    while(s[i]!='\0'){
+        i++;
+    }
+
+    char temp[i];
+    while(i>0){
+        i--;
+        
+        if(!(s[i]>= 'a'&&s[i] <='z')&&!(s[i]>= 'A'&&s[i] <='Z')){
+            temp[i]=s[i];
+            x++;
+        }
+        if((s[i]>= 'a'&&s[i] <='z') || (s[i]>= 'A'&&s[i] <='Z')){
+            temp[i]= s[x];
+            x++;
+        }
+        
+    }
 }
