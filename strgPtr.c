@@ -92,8 +92,9 @@ int strgDiff(const char *s1, const char *s2) {
 
         return -2;
     }
+    //if s1==s2, return -1
     int i=0, res=-1;
-    //while both strings are still going keep iterating
+    //while both strings are still not "\0' keep iterating
     while(s1[i]!='\0' && s2[i]!= '\0'){
         //if different return and end loop.
         if(s1[i]!=s2[i]){
@@ -101,6 +102,7 @@ int strgDiff(const char *s1, const char *s2) {
             break;
         }i++;
     }
+    //if one string is shorter than the other and there were no previous change, return current index where string ended.
     if(!(s1[i]=='\0' &&s2[i]=='\0'&&res==-1)){
         res=i;
     }
