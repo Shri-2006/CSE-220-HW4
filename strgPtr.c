@@ -123,12 +123,18 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
         return;
     }
 
+    //possible edge case if size==0.
+    if(size==0){
+        return;
+    }
+
     int x=0,s1_indexer=0,s2_indexer=0;
     for(int i=0;i<size-1;i++){
         //if both strings are empty, end loop.
         if(s1[s1_indexer]=='\0' &&s2[s2_indexer]=='\0'){
             break;
         }else{
+            //if i even and s1 is empty insert s2 char, else insert s1 char
             if(i%2==0){
                 if(s1[s1_indexer]=='\0'){
                     d[x]=s2[s2_indexer];
@@ -140,6 +146,7 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
                     x++;
                 }
             }
+            // if i odd and s2 empty insert s1 char else insert s2 char
             else{
                 if(s2[s2_indexer]=='\0'){
                     d[x]=s1[s1_indexer];
@@ -152,6 +159,7 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
                 }
             }
         }
+        //last index being used must be null char.
     }d[x]= '\0';
 
 
