@@ -70,7 +70,7 @@ void strgChangeCase(char *s) {
             else if (s[i]>='A' &&s[i]<='Z'){
                 s[i] =s[i]- 32;
         }
-    }}
+    }i++;}
 }
 
 int strgDiff(const char *s1, const char *s2) {
