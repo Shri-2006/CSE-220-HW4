@@ -54,6 +54,23 @@ void strgCopy(const char *source, char *destination, size_t size) {
 void strgChangeCase(char *s) {
     (void)s;
     /* TODO */
+    int i=0;
+    while (s[i]!='\0'){
+        int ifadjcaentDigit=0;
+        if (s>0&& (s[i-1]>='0'&&s[i-1]<='9')){
+            ifadjcaentDigit=1;
+        }
+        if(s[i+1]!='\0'&&(s[i+1]>='0'&&s[i+1]<='9')){
+            ifadjcaentDigit=1;
+        }
+        if(ifadjcaentDigit==0){
+            if(s[i]>='a' && s[i]<='z'){
+                s[i] = s[i]+32;
+            }
+            else if (s[i]>='A' &&s[i]<='Z'){
+                s[i] =s[i]- 32;
+        }
+    }}
 }
 
 int strgDiff(const char *s1, const char *s2) {
