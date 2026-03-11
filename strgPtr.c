@@ -87,7 +87,22 @@ int strgDiff(const char *s1, const char *s2) {
     (void)s1;
     (void)s2;
     /* TODO */
-    return 0;
+    //if s1 or s2 is NulL, retun -2.
+    if(s1==NULL||s2== NULL){
+        return -2;
+    }
+    int i=0, res;
+    //while both strings are still going keep iterating
+    while(s1[i]!='\0' && s2[i]!= '\0'){
+        //if different return and end loop.
+        if(s1[i]!=s2[i]){
+            res=i;
+            break;
+        }i++;
+    }
+
+
+    return res;
 }
 
 void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
