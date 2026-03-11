@@ -173,24 +173,32 @@ void strgReverseLetters(char *s) {
     if(s==NULL){
         return;
     }
-    
+    //length goes into i
     int i=0,x=0;
     while(s[i]!='\0'){
         i++;
     }
 
     char temp[i];
-    while(i>0){
-        i--;
-        
-        if(!(s[i]>= 'a'&&s[i] <='z')&&!(s[i]>= 'A'&&s[i] <='Z')){
-            temp[i]=s[i];
-            x++;
+
+    for (x=0;x<i;x++){
+        //if letter, store letter in temp array in new order.
+        if((s[x]>= 'a'&&s[x] <='z') || (s[x]>= 'A'&&s[x] <='Z')){
+            while((i-1)>=0 && !((s[i-1]>= 'a'&&s[i-1]<='z') || (s[i-1] >= 'A'&&s[i-1]<='Z'))){
+                i--;
+            }
+             temp[x]= s[i-1];
+             i--;
+        }//if not a letter keep symbol in same location
+        else{
+            temp[x]=s[x];
         }
-        if((s[i]>= 'a'&&s[i] <='z') || (s[i]>= 'A'&&s[i] <='Z')){
-            temp[i]= s[x];
-            x++;
-        }
-        
     }
+    //place '\0' at end of string
+    temp[i]='\0';
+    //put temp into s
+    for(x=0;x<=i;x++){
+        s[x]=temp[x];
+    }
+
 }
