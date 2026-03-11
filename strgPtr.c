@@ -108,7 +108,7 @@ int strgDiff(const char *s1, const char *s2) {
     }
 
 
-    return res;
+   return res;
 }
 
 void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
@@ -117,6 +117,24 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
     (void)d;
     (void)size;
     /* TODO */
+
+    //if s1,s2, or d is null return
+    if(s1==NULL||s2 ==NULL ||d==NULL){
+        return;
+    }
+    for(int i=0;i<size-1;i++){
+        if(s1[i]== '\0'){
+
+            if(s2[i]=='\0'){
+                d[i]='\0';
+            }
+            else{
+                d[i]= s2[i];
+            }
+        }
+    }
+
+
 }
 
 void strgReverseLetters(char *s) {
