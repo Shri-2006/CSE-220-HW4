@@ -88,66 +88,84 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
      //if plaintext or ciphrtext is NULL return -2
     if (plaintext==NULL ||ciphertext==NULL){
         count=-2;
-    }
-    //finding eom location
-       int ending_pos=-1;
-    for(int i=0;i<=strgLen(ciphertext)-7; i++){
-        if(chiphertext[i]=='_' && ciphertext[i+1]=='_' &&ciphertext[i+2] =='E'&& ciphertext[i+3]=='O' && ciphertext[i+4]=='M'&&ciphertext[i+5]=='_'&&ciphertext[i+6]=='_'&&ciphertext[i+1]=='\0'){
-            ending_pos=i;
-            break;
-        }
-    }
-    //if plaintext is 0, return 0
-    else if(strgLen(plaintext)==0){
-        count=0;
-    }
-    //if __EOM__ marker is not present return -1. 0 to 6 after plaintext is __EOM__, then null char to end string
- 
-    else if (ending_pos==-1){
-        count=-1;
-    }
-    //if no errors, then go decrypt
-    else{
-        int i=0;
-        while((i<ending_pos)&& (i<(strgLen(plaintext)-1))){
-            char temp= ciphertext[i];
-            //if current char is alphabet, then decrypt through (key+i) %26,
-            if((temp>='A'&& temp<='Z') ||(temp >='a'&& temp<= 'z')){
-                if(temp>='a'&&temp<='z'){
-                    temp =temp-'a';
-                    temp=(temp+key+i)%26;
-                    temp=(temp+26)%26; 
-                    temp=temp+'a';
-                    count++;
-                }
-                else{
-                    temp=temp-'A';
-                    temp=(temp+key+i)%26;
-                    temp=(temp+26)%26; 
-                    temp=temp+'A';
-                    count++;
-                }
-                
-        }
-        // if current char is digit then decrypt through key_2*i
-          else if (temp>='0'&& temp<='9'){
-            temp=temp-'0';
-            temp=((temp+key+(2*i))%10);
-            temp=(temp+10)%10;
-            temp=temp+'0';
-            count++;
-
-        }
-        //all othe characters are copied such as space and punctution. 
-        else{
-            temp=temp;
-            i++;
-        }
-        plaintext[i]=temp;
         
     }
-    //end string
-    plaintext[i]='\0';
+    //finding eom location
+       
+    else{
+        int ending_pos=-1;
+        for(int i=0;i<=strgLen(ciphertext)-7; i++){
+            if(ciphertext[i]=='_' && ciphertext[i+1]=='_' &&ciphertext[i+2] =='E'&& ciphertext[i+3]=='O' && ciphertext[i+4]=='M'&&ciphertext[i+5]=='_'&&ciphertext[i+6]=='_'){
+                ending_pos=i;
+                break;
+            }
+        }
+            //if plaintext is 0, return 0
+        if(strgLen(plaintext)==0){
+            count=0;
+        }
+        //if __EOM__ marker is not present return -1. 0 to 6 after plaintext is __EOM__, then null char to end string
+ 
+        else if (ending_pos==-1){
+            count=-1;
+        }
+        //if no errors, then go decrypt
+        else{
+            int i=0;
+            while((i<ending_pos)&& (i<(strgLen(plaintext)-1))){
+                char temp= ciphertext[i];
+                //if current char is alphabet, then decrypt through (key+i) %26,
+                if((temp>='A'&& temp<='Z') ||(temp >='a'&& temp<= 'z')){
+                    int shifter= (key+i)%26;
+                    if(temp>='a'&&temp<='z'){
+                        temp =temp-'a';
+                        temp=(temp-shift)%26;
+                        while(temp<0){
+                            temp=temp+26;
+                        }
+                        temp=temp+'a';
+                        count++;
+                    }
+                    else{
+                        temp =temp-'A';
+                        temp=(temp-shift)%26;
+                        while(temp<0){
+                            temp=temp+26;
+                        }
+
+                        temp=temp+'A';
+                        count++;
+                    }
+                
+            }
+            // if current char is digit then decrypt through key_2*i
+            else if (temp>='0'&& temp<='9'){
+                int shifter =(key+2*i)%10;
+                temp=temp-'0';
+                temp=(temp-shift)%10;
+                while(temp<0){
+                    temp=temp+10;
+                }
+                temp=temp+'0';
+                count++;
+
+            }
+            //all othe characters are copied such as space and punctution. 
+            else{
+                temp=temp;
+            
+            }
+            plaintext[i]=temp;
+            i++;
+        
+            }
+        //end string
+        plaintext[i]='\0';
     
+        
+        }
+        
+    }
     return count;
 }
+
