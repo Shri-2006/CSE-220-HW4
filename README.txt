@@ -3,3 +3,9 @@ Shriyans Singh
 
 Edge Cases:
 
+
+
+
+
+
+Order for decryptCaesear error precedence is based on red text, as according to the piazza
