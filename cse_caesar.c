@@ -8,40 +8,47 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
     (void)ciphertext;
     (void)key;
     /* TODO */
+    int count=0;
     //if plaintext or ciphrtext is NULL return -2
     if (plaintext==NULL ||ciphertext==NULL){
-        return -2;
+        count=-2;
     }
     
     //if ciphertext is less than plaintext +EOM marker, return -1
     else if (strgLen(ciphertext)<(strgLen(plaintext)+7)){
-        return -1;
+        count=-1;
     }
     
     else{
         int i=0;
+
         while(plaintext[i]!='\0'){
             char temp=plaintext[i];
-            int count=0;
-            //if at current index it is alphabet, then encrypt through (key+index) %26, and preserve the cas.
+            
+            //if at current index it is alphabet, then encrypt through (key+index) %26, and preserve the cas. 
+            //If negative key, it converts to positive
             if((temp>='A'&& temp<='Z') ||(temp >='a'&& temp<= 'z')){
                 if(temp>='a'&&temp<='z'){
                     temp =temp-'a';
-                    temp=(temp+key)%26;
+                    temp=(temp+key+i)%26;
+                    temp=(temp+26)%26; 
                     temp=temp+'a';
                     count++;
                 }
                 else{
                     temp=temp-'A';
-                    temp=(temp+key)%26;
+                    temp=(temp+key+i)%26;
+                    temp=(temp+26)%26; 
                     temp=temp+'A';
                     count++;
                 }
         }
         //if current indexi is digit then encrpt through (key+2*index)%10
+        //If negative key, it converts to positive
         else if (temp>='0'&& temp<='9'){
             temp=temp-'0';
-            temp=(temp+(2*i)%10);
+            temp=((temp+key+(2*i))%10);
+            temp=(temp+10)%10;
             temp=temp+'0';
             count++;
 
@@ -57,10 +64,19 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
         ciphertext[i]=temp;
         i++;
     }
-    ciphertext[i]='__EOM__\0';
+    char *closer="__EOM__";
+    while(*closer!='\0'){
+        ciphertext[i]=*closer;
+        closer++;
+        i++;
+    }
+    ciphertext[i]='\0';
 
 
-    return count;
+    
+}
+return count;
+
 }
 
 int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
