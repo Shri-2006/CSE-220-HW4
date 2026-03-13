@@ -119,7 +119,7 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
                     int shifter= (key+i)%26;
                     if(temp>='a'&&temp<='z'){
                         temp =temp-'a';
-                        temp=(temp-shift)%26;
+                        temp=(temp-shifter)%26;
                         while(temp<0){
                             temp=temp+26;
                         }
@@ -128,7 +128,7 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
                     }
                     else{
                         temp =temp-'A';
-                        temp=(temp-shift)%26;
+                        temp=(temp-shifter)%26;
                         while(temp<0){
                             temp=temp+26;
                         }
@@ -142,7 +142,7 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
             else if (temp>='0'&& temp<='9'){
                 int shifter =(key+2*i)%10;
                 temp=temp-'0';
-                temp=(temp-shift)%10;
+                temp=(temp-shifter)%10;
                 while(temp<0){
                     temp=temp+10;
                 }
