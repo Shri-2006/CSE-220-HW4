@@ -129,7 +129,7 @@ void strgInterleave(const char *s1, const char *s2, char *d, size_t size) {
     }
 
     int x=0,s1_indexer=0,s2_indexer=0;
-    for(int i=0;i<size-1;i++){
+    for(int i=0;i<(int)size-1;i++){
         //if both strings are empty, end loop.
         if(s1[s1_indexer]=='\0' &&s2[s2_indexer]=='\0'){
             break;

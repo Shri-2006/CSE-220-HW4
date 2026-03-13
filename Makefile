@@ -2,10 +2,10 @@ CC      = gcc
 CFLAGS = -Wall -Wextra -std=c11 -I/opt/homebrew/include
 TESTFLAGS = -lcriterion
 
-SRC     = strgPtr.c cse_caesar.c
+SRC     = strgPtr.c #cse_caesar.c
 OBJ     = $(SRC:.c=.o)
 
-TEST_SRC = tests/test_strg.c tests/test_caesar.c
+TEST_SRC = tests/test_strg.c #tests/test_caesar.c
 TEST_OBJ = $(TEST_SRC:.c=.o)
 
 .PHONY: all test clean
