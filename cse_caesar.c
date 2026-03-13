@@ -22,17 +22,20 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
         int i=0;
         while(plaintext[i]!='\0'){
             char temp=plaintext[i];
+            int count=0;
             //if at current index it is alphabet, then encrypt through (key+index) %26, and preserve the cas.
             if((temp>='A'&& temp<='Z') ||(temp >='a'&& temp<= 'z')){
                 if(temp>='a'&&temp<='z'){
                     temp =temp-'a';
                     temp=(temp+key)%26;
                     temp=temp+'a';
+                    count++;
                 }
                 else{
                     temp=temp-'A';
                     temp=(temp+key)%26;
                     temp=temp+'A';
+                    count++;
                 }
         }
         //if current indexi is digit then encrpt through (key+2*index)%10
@@ -40,7 +43,8 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
             temp=temp-'0';
             temp=(temp+(2*i)%10);
             temp=temp+'0';
-   
+            count++;
+
         }
         //if any other characters like space or punctuation then just copy it.
         else{
@@ -50,11 +54,13 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
 
 
         //insert encrpted into plaintext index, and incremnt i
-        plaintext[i]=temp;
+        ciphertext[i]=temp;
         i++;
     }
+    ciphertext[i]='__EOM__\0';
 
-    return 0;
+
+    return count;
 }
 
 int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
