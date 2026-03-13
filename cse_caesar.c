@@ -8,6 +8,20 @@ int encryptCaesar(const char *plaintext, char *ciphertext, int key) {
     (void)ciphertext;
     (void)key;
     /* TODO */
+    if (plaintext==NULL ||ciphertext==NULL){
+        return -2;
+    }
+    else if (strgLen(plaintext)==0){
+        return 0;
+    }
+    else if (strgLen(ciphertext)<(strgLen(plaintext)+7)){
+        return -1;
+    }
+    
+    else{
+
+    }
+
     return 0;
 }
 
