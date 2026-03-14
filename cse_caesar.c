@@ -118,22 +118,24 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
                 if((temp>='A'&& temp<='Z') ||(temp >='a'&& temp<= 'z')){
                     int shifter= (key+i)%26;
                     if(temp>='a'&&temp<='z'){
-                        temp =temp-'a';
-                        temp=(temp-shifter)%26;
-                        while(temp<0){
-                            temp=temp+26;
+                        int temp_2 =temp-'a';
+                        temp_2=(temp_2-shifter)%26;
+                        while(temp_2<0){
+                            temp_2=temp_2+26;
+                            
                         }
-                        temp=temp+'a';
+                        temp=temp_2+'a';
                         count++;
                     }
                     else{
-                        temp =temp-'A';
-                        temp=(temp-shifter)%26;
-                        while(temp<0){
-                            temp=temp+26;
+                        
+                        int temp_2 =temp-'A';
+                        temp_2=(temp_2-shifter)%26;
+                        while(temp_2<0){
+                            temp_2=temp_2+26;
                         }
 
-                        temp=temp+'A';
+                        temp=temp_2+'A';
                         count++;
                     }
                 
@@ -141,12 +143,12 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
             // if current char is digit then decrypt through key_2*i
             else if (temp>='0'&& temp<='9'){
                 int shifter =(key+2*i)%10;
-                temp=temp-'0';
-                temp=(temp-shifter)%10;
-                while(temp<0){
-                    temp=temp+10;
+                int temp_2=temp-'0';
+                temp_2=(temp_2-shifter)%10;
+                while(temp_2<0){
+                    temp_2=temp_2+10;
                 }
-                temp=temp+'0';
+                temp=temp_2+'0';
                 count++;
 
             }
