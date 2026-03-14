@@ -191,6 +191,73 @@ Test(strgChangeCase, test_11){
 
 //strgDiff now
 
+Test(strgDiff, test_1){
+    char s1[]="Acer";
+    char s2[]="Asus";
+    
+    cr_expect_eq(strgDiff(s1,s2),1);
+}
+//edge case of identical strings
+Test(strgDiff, test_2){
+    char s1[]="Asus";
+    char s2[]="Asus";
+    
+    cr_expect_eq(strgDiff(s1,s2),-1);
+}
+
+//edge case of s1 null
+Test(strgDiff, test_3){
+    cr_expect_eq(strgDiff(NULL,"Asus"),-2);
+}
+
+//edge case of s2 null
+Test(strgDiff, test_4){
+    cr_expect_eq(strgDiff("ACER",NULL),-2);
+}
+//edge case of both strings NULL
+
+Test(strgDiff, test_5){
+    cr_expect_eq(strgDiff(NULL,NULL),-2);
+}
+//checks if special characters noticed
+Test(strgDiff, test_6){
+    char s1[]="\n";
+    char s2[]="\t";
+    
+    cr_expect_eq(strgDiff(s1,s2),0);
+}
+Test(strgDiff,test_7){
+    char s1[]="A2sus";
+    char s2[]="Asus";
+    
+    cr_expect_eq(strgDiff(s1,s2),1);
+}
+//edge case of shorter string
+Test(strgDiff, test_8){
+ 
+    cr_expect_eq(strgDiff("","shri"),0);
+}
+
+Test(strgDiff,test_9){
+    cr_expect_eq(strgDiff("123","shri"),0);
+}
+Test(strgDiff,test_10){
+    cr_expect_eq(strgDiff("abcd","ABCD"),0);
+}
+
+Test(strgDiff, test_11){
+    cr_expect_eq(strgDiff("I play violin","I played the violin"),6);
+}
+
+
+
+
+
+
+
+
+
+
 //interleave tests now
 
 
@@ -261,4 +328,78 @@ Test(strgInterleave,test_12){
     char d[2];
     strgInterleave("b","\0",d,2);
     cr_expect_str_eq(d,"b");
+}
+
+
+
+
+//strgReverseLetters tests
+Test(strgReverseLetters, test1){
+    char s[]="shri";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"irhs");
+}
+//ensure cap transfer
+Test(strgReverseLetters, test_2){
+    char s[]="Shri";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"irhS");
+}
+//edge case of digits and few letters.
+Test(strgReverseLetters, test_3){
+    char s[]="24o21s";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"24s21o");
+}
+//special char test
+Test(strgReverseLetters, test_4){
+    char s[]="\nsd5\t";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"\nds5\t");
+}
+
+Test(strgReverseLetters, test_5){
+    char s[]="I have 90 fish";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"h sife 90 vahI");
+}
+
+
+//edge null case
+Test(strgReverseLetters, test_6){
+    
+    strgReverseLetters(NULL);
+    cr_expect(1);
+
+}
+
+Test(strgReverseLetters, test_7){
+    char s[]="123 s !!!";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"123 s !!!");
+}
+
+Test(strgReverseLetters, test_8){
+    char s[]="Class of 2028";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"fossa lC 2028");
+}
+
+Test(strgReverseLetters, test_9){
+    char s[]="0_0";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"0_0");
+
+}
+
+Test(strgReverseLetters, test_10){
+    char s[]="I need to study for CSE 385";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"E SCro fy dutso tde enI 385");
+}
+
+Test(strgReverseLetters, test_11){
+    char s[] = "Internship pls";
+    strgReverseLetters(s);
+    cr_expect_str_eq(s,"slppihsnre tnI");
 }

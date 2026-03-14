@@ -100,12 +100,13 @@ int strgDiff(const char *s1, const char *s2) {
         //if different return and end loop.
         if(s1[i]!=s2[i]){
             res=i;
-            break;
+            return res;
         }i++;
     }
     //if one string is shorter than the other and there were no previous change, return current index where string ended.
     if(!(s1[i]=='\0' &&s2[i]=='\0'&&res==-1)){
-        res=i;
+        res=res;
+        return i;
     }
 
 

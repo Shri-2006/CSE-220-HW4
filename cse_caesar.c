@@ -101,7 +101,7 @@ int decryptCaesar(const char *ciphertext, char *plaintext, int key) {
             }
         }
             //if plaintext is 0, return 0
-        if(strgLen(plaintext)==0){
+        if((ciphertext[0]=='\0')){
             count=0;
         }
         //if __EOM__ marker is not present return -1. 0 to 6 after plaintext is __EOM__, then null char to end string
