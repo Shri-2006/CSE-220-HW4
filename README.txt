@@ -22,7 +22,14 @@ strgChangeCase edge test cases{
     test 6 checks for special characters like newline \n
 }
 
-
+strgInterleave edge{
+    test 3: checks for when no space for change. no change overall
+    test 4: checks for only 1 char change, null char insertion
+    test 6: s1=null, do nothing
+    test 7: s2=null, do nothing
+    test 8: d=null, error code is 1 so 1 in cr_expect
+    
+}
 
 
 

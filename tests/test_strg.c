@@ -189,7 +189,7 @@ Test(strgChangeCase, test_11){
 }
 
 
-
+//strgDiff now
 
 //interleave tests now
 
@@ -200,3 +200,65 @@ Test(strgInterleave, test_1) {
     cr_expect_str_eq(d, "srhi");
 }
 
+Test(strgInterleave,test_2){
+    char d[3];
+    strgInterleave("shri","yans",d,2);
+    cr_expect_str_eq(d,"s");
+}
+//edge should not change sinnce invalid space change
+Test(strgInterleave,test_3){
+    char d[4]="000";
+    strgInterleave("s","h",d,0);
+    cr_expect_str_eq(d,"000");
+}
+//edge case, only 1 character = \0
+Test(strgIntereave, test_4){
+    char d[5]="0000";
+    strgInterleave("s","hri",d,1);
+    cr_expect_str_eq(d,"");
+    
+}
+Test(strgInterleave, test_5){
+    char d[10];
+    strgInterleave("This is ", "CSE 114",d,10);
+    cr_expect_str_eq(d,"TChSiEs  ");
+}
+//edge of a string null
+Test(strgInterleave, test_6){
+    char d[5]="0000";
+    strgInterleave(NULL, "hri", d,5);
+    cr_expect_str_eq(d,"0000");
+}
+//edgee of other string null
+Test(strgInterleave, test_7){
+    char d[5]="0000";
+    strgInterleave("22", NULL, d,5);
+    cr_expect_str_eq(d,"0000");
+}
+//edge of d is null
+Test(strgInterleave, test_8){
+    
+    strgInterleave("33", "hri", NULL,5);
+    cr_expect(1);
+}
+Test(strgInterleave, test_9){
+    char d[15];
+    strgInterleave("a", "shri", d, 10);
+    cr_expect_str_eq(d,"ashri");
+}
+Test(strgInterleave, test10){
+    char d[5];
+    strgInterleave("ab","12",d,5);
+    cr_expect_str_eq(d,"a1b2");
+}
+
+Test(strgInterleave,test_11){
+    char d[2];
+    strgInterleave("\0","b",d,2);
+    cr_expect_str_eq(d,"b");
+}
+Test(strgInterleave,test_12){
+    char d[2];
+    strgInterleave("b","\0",d,2);
+    cr_expect_str_eq(d,"b");
+}
