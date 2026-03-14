@@ -26,6 +26,7 @@ void strgCopy(const char *source, char *destination, size_t size) {
     (void)source;
     (void)destination;
     (void)size;
+    
     /* TODO */
     //if size==0 or source or destination is null do nothing
     if(size == 0 || source==NULL||destination==NULL){

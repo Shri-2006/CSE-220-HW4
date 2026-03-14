@@ -3,9 +3,81 @@ Shriyans Singh
 
 Edge Cases:
 
+strgLen edgetest cases{
+Test 4 for strgLen: Checking if special charactrs like newline is counted as 1.
+Test 5: check to ensure program stops once string stopper is found.
+Test 7: check for largish strigns work or not.
+}
+
+strgCopy edge test cases{
+    test 3 for if size is 1
+    Test 4 checks for if size is 0, should return without changing d.
+    Test 5 checks when d is NULL. Should return d without changing it.
+    Test 6 checks when not enough space in d
+    Test 7 checks null source, should not changee d
+}
+
+strgChangeCase edge test cases{
+    
+}
 
 
 
 
 
 Order for decryptCaesear error precedence is based on red text, as according to the piazza
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Was told to delete sample test cases, just kept originals here and deleted tthe ones from the pdf
+Test(strgLen, basic) {
+    cr_expect_eq(strgLen("Stony Brook"), 11);
+    cr_expect_eq(strgLen(""), 0);
+    cr_expect_eq(strgLen(NULL), -1);
+}
+
+
+
+Test(strgCopy, truncation) {
+    char d[5];
+    strgCopy("Computer Science", d, 5);
+    cr_expect_str_eq(d, "Comp");
+}
+
+Test(strgChangeCase, adjacency) {
+    char s[] = "Stony Brook";
+    strgChangeCase(s);
+    cr_expect_str_eq(s, "sTONY bROOK");
+}
+
+Test(strgInterleave, priority) {
+    char d[6];
+    strgInterleave("abcdef", "12", d, 6);
+    cr_expect_str_eq(d, "a1b2c");
+}
+
+
+
