@@ -18,7 +18,8 @@ strgCopy edge test cases{
 }
 
 strgChangeCase edge test cases{
-    
+    test 5 checks if NULL enterance
+    test 6 checks for special characters like newline \n
 }
 
 

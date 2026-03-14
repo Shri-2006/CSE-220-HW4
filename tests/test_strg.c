@@ -1,7 +1,7 @@
 //Shriyans Singh 114807762
 #include <criterion/criterion.h>
 #include "../strgPtr.h"
-
+#include <stdio.h>
 
 //Shriyans Test Case strgLen:
 
@@ -128,8 +128,75 @@ Test(strgChangeCase, test_1) {
     cr_expect_str_eq(s, "STRGcHANGEcASE TIME");
 }
 
-Test(strgInterleave, priority) {
-    char d[6];
-    strgInterleave("abcdef", "12", d, 6);
-    cr_expect_str_eq(d, "a1b2c");
+Test(strgChangeCase, test_2){
+    char s[] = "1234";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"1234");
 }
+
+Test(strgChangeCase, test_3){
+    char s[] ="I have a car";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"i HAVE A CAR");
+}
+
+Test(strgChangeCase, test_4){
+    char s[]="a2a";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"a2a");
+}
+//edge case NULL should return 1
+Test(strgChangeCase, test_5){
+
+    strgChangeCase(NULL);
+    cr_expect(1);
+    
+}
+//special char
+Test(strgChangeCase, test_6){
+    char s[] ="\n";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"\n");
+}
+
+Test(strgChangeCase, test_7){
+    char s[]= "Stony Br00k W1N";
+    strgChangeCase(s);
+    cr_expect_str_eq(s, "sTONY br00k W1N");
+}
+
+Test(strgChangeCase, test_8){
+    char s[]= "Pointers are interesting";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"pOINTERS ARE INTERESTING");
+}
+
+Test(strgChangeCase, test_9){
+    char s[]="Midterm 1 scared me";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"mIDTERM 1 SCARED ME");
+}
+
+Test(strgChangeCase, test_10){
+    char s[] = "gas is pretty expensive, 3.30I think";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"GAS IS PRETTY EXPENSIVE, 3.30I THINK");
+}
+Test(strgChangeCase, test_11){
+    char s[]= "I do commute";
+    strgChangeCase(s);
+    cr_expect_str_eq(s,"i DO COMMUTE");
+}
+
+
+
+
+//interleave tests now
+
+
+Test(strgInterleave, test_1) {
+    char d[6];
+    strgInterleave("sh", "ri", d, 6);
+    cr_expect_str_eq(d, "srhi");
+}
+
